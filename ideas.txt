@@ -1,0 +1,20 @@
+Examine desired behaviour of indexer.
+ids should be unique, i.e. an uncased id should never match the cased id of something that isnt a caps variant and vice versa.
+Be careful with this though, the item id is all off of lowercase stuff, but the id in the cased dictionary won't be of that lowercase ded caps
+Uncased id can just point to the first instance found in the file. Star's one overwrote it each time so it ended up as the last one.
+Default behaviour when you ask for an element im not sure what that should be, cased or not?
+get_recipes -> return uncased ids i think is pretty fair, should I account for both cased and uncased?
+Ideally, i want lineages generated to be actually correctly cased, but i am not sure theres an easy way for that, heres why:
+if you have say A + B = c and D + E = C, when expanding out C + F = G, how do you know to display the right caps of C, since this changes based on what the lineage makes it with.
+well, lets see.
+One issue with storing stuff separate like, ids: name but then also like name: recipes is that you can get disagreements between them that can be hard to handle, but if you store like ids: {name:, recipes:} then its cumbersome. Unless some object can do that for me, like ids: new_class_i_made.
+Why convert to ids when you can use names? wouldnt that save a ton of steps? well i need to account for that somehow. Also, how should I assign generation to caps variants? idk
+example flow:
+give me the recipes for 2398472897 (say here i dont want to know all the caps variants making other variants, nuh uh, only this actual element.
+k here they are: 912812897612378468, 3847728732910010, 828919098273894777173
+split em up a b c d e f
+do i need some kind of id: collapsed id system? i mean i guess cased id to collapsed id is okay.
+the hard bit is i think i will need to store dictionaries in these things, like id: {stuff, stuff}, and idk how to hide away all that awkwardness inside of stuff, like should I do other functions or other classes?
+like should I even be doing this if i dont have one with casing collapsed done?
+
+Damn, I just had an idea pop in where it would have been good to use pointers, where the less specific structure for something could leech off the specific one, but ive forgotten the case, nooo
