@@ -79,10 +79,10 @@ class FileIndexerNoId:
         # Purpose of this block is two-fold:
         # 1. If data already exists, we really do not want to overwrite the recipes, hence we must return
         # 2. Check for emoji conflicts (only possible if data already exists)
-        existing_data = self.elements.get(item_name)  # Data or None if it doesn't exist.
+        existing_data: ElementData | None = self.elements.get(item_name, None)  # Data or None if it doesn't exist.
         # This logic MUST be improved, I really hate the way the default emoji logic is working here.
         if existing_data:
-            existing_emoji = existing_data.get("emoji")
+            existing_emoji = existing_data.get("emoji", None)
             if existing_emoji != emoji and emoji and emoji != '⬜':  # Required in order for conflict to trigger, no conflict if default emoji passed.
                 if existing_emoji == '⬜':  # Override, assume default.
                     self.elements[item_name]["emoji"]= emoji
@@ -97,7 +97,7 @@ class FileIndexerNoId:
             return   # As promised by purpose 1 of the check (don't overwrite recipes).
 
         # If no existing data, initialize new element data
-        element_data = {"recipes": []}  # Initialise as empty list since no recipes yet.
+        element_data: ElementData = {"recipes": []}  # Initialise as empty list since no recipes yet.
         if emoji:
             element_data["emoji"] = emoji
 

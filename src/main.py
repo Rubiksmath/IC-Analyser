@@ -1,4 +1,4 @@
-from Structure_2.FileIndexerNoId import FileIndexerNoId, savefile_to_indexer_noid, add_file_data_to_indexer
+from src.Structure_2.FileIndexerNoId import savefile_to_indexer_noid, add_file_data_to_indexer
 
 def prettify_recipe_dict(recipes_data: dict) -> str:
     """Formats the recipe list for printing."""

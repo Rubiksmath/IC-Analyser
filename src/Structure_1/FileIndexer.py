@@ -1,5 +1,3 @@
-from utils import pair_to_u64, u64_to_pair
-
 USE_ID = True
 
 class FileIndexer:
