@@ -135,7 +135,7 @@ class FileIndexerNoId:
 
         normalised_ing1 = normalise_input(ing1)
         normalised_ing2= normalise_input(ing2)
-        normalise_input(result)  # Don't need normalised name here.
+        normalise_input(result)  # Don't need normalised name here, running purely to add result if it does not exist.
 
         ing_pair = tuple(sorted((normalised_ing1, normalised_ing2)))
         if ing_pair in self.recipes_fwd:
